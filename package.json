@@ -1,0 +1,15 @@
+{
+  "name": "projestions-front",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eric Brelsford <ebrelsford@gmail.com> (http://ebrelsford.github.io/)",
+  "license": "ISC",
+  "dependencies": {
+    "handlebars": "^4.0.5",
+    "leaflet-draw": "^0.2.3"
+  }
+}
