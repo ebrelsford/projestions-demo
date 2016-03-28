@@ -1,7 +1,7 @@
 {
   "name": "projestions-demo",
   "version": "0.1.0",
-  "description": "",
+  "description": "projection suggestions",
   "main": "index.js",
   "repository" : {
     "type" : "git",
