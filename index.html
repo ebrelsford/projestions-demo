@@ -3,6 +3,7 @@
     <head>
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
         <link rel="stylesheet" href="node_modules/leaflet-draw/dist/leaflet.draw.css" />
+        <link rel="stylesheet" href="node_modules/leaflet-loading/src/Control.Loading.css" />
         <style>
             html, body, #map {
                 height: 100%;
@@ -51,6 +52,7 @@
         <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
         <script src="node_modules/leaflet-draw/dist/leaflet.draw.js"></script>
         <script src="node_modules/handlebars/dist/handlebars.min.js"></script>
+        <script src="node_modules/leaflet-loading/src/Control.Loading.js"></script>
 
         <!-- TODO nicer format -->
         <script id="crss-template" type="text/x-handlebars-template">
@@ -80,8 +82,10 @@
             var projections = L.geoJson(null, {
                 style: { fill: false }
             });
+            var map;
 
             function loadCrss() {
+                map.fire('dataloading');
                 var params = {
                     geojson: true,
                     geom: JSON.stringify(drawnItems.toGeoJSON().features[0].geometry)
@@ -89,8 +93,8 @@
                 if ($('.units').val()) {
                     params.units = $('.units').val();
                 }
-                // TODO loading indicator
                 $.getJSON(PROJESTIONS_CONFIG.host + '?' + $.param(params), function (data) {
+                    map.fire('dataload');
                     projections.clearLayers();
                     projections.addData(data);
                     $('#crss').html(template({ crss: data.features }));
@@ -98,7 +102,9 @@
             }
 
             function onReady() {
-                var map = L.map('map');
+                map = L.map('map', {
+                    loadingControl: true
+                });
                 var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
                 var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
                 L.tileLayer(osmUrl, {maxZoom: 12, attribution: osmAttrib}).addTo(map);		
