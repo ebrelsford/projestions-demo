@@ -165,7 +165,6 @@
 
                 $('#crss').on('mouseover', '.crs', function () {
                     var code = parseInt($(this).data('code'));
-                    //projections.resetStyle();
                     projections.eachLayer(function (layer) {
                         layer.setStyle({ fill: false });
                         if (layer.feature.properties.coord_ref_sys_code === code) {
