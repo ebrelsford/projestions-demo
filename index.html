@@ -46,6 +46,7 @@
             }
         </style>
 
+        <script src="config.js"></script>
         <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
         <script src="node_modules/leaflet-draw/dist/leaflet.draw.js"></script>
@@ -89,7 +90,7 @@
                     params.units = $('.units').val();
                 }
                 // TODO loading indicator
-                $.getJSON('http://projest.io/ns/api/?' + $.param(params), function (data) {
+                $.getJSON(PROJESTIONS_CONFIG.host + '?' + $.param(params), function (data) {
                     projections.clearLayers();
                     projections.addData(data);
                     $('#crss').html(template({ crss: data.features }));
