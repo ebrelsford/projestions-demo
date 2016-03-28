@@ -49,6 +49,16 @@
             .crs:hover {
                 background: #aaa;
             }
+
+            .welcome-message {
+                background: white;
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, 0);
+                padding: 5px;
+                top: 15px;
+                z-index: 1000;
+            }
         </style>
 
         <script src="config.js"></script>
@@ -152,6 +162,10 @@
                         }
                     });
                 });
+
+                $('body').on('click', function () {
+                    $('.welcome-message').hide();
+                });
             }
         </script>
     </head>
@@ -163,6 +177,9 @@
             <option value="US survey foot">feet</option>
             <option value="metre">meters</option>
         </select>
+        <div class="welcome-message">
+            draw a shape for projection suggestions for the area around that shape. use the tools to the left.
+        </div>
         <div id="crss"></div>
     </body>
 </html>
