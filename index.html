@@ -83,6 +83,9 @@
                         <div class="body">
                             <div class="crs-area">{{properties.area_name}}</div>
                             <div class="crs-units">{{properties.unit_of_meas_name}}</div>
+                            <div class="crs-links">
+                                <a href="http://epsg.io/{{properties.coord_ref_sys_code}}" target="_blank">more at epsg.io</a>
+                            </div>
                         </div>
                     </li>
                 {{/each}}
