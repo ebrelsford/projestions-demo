@@ -73,7 +73,7 @@
             <ol class="crs-list">
                 {{#each crss}}
                     <li class="crs" data-code="{{properties.coord_ref_sys_code}}">
-                        <h1 class="crs-header">{{properties.coord_ref_sys_name}} ({{properties.coord_ref_sys_code}})</h1>
+                        <h1 class="crs-header">{{properties.coord_ref_sys_name}} (EPSG:{{properties.coord_ref_sys_code}})</h1>
                         <div class="body">
                             <div class="crs-area">{{properties.area_name}}</div>
                             <div class="crs-units">{{properties.unit_of_meas_name}}</div>
