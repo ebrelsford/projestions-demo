@@ -7,6 +7,8 @@
         <style>
             html, body, #map {
                 height: 100%;
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 12px;
                 margin: 0;
                 padding: 0;
                 width: 100%;
@@ -16,6 +18,7 @@
                 position: absolute;
                 right: 15px;
                 top: 15px;
+                width: 300px;
             }
 
             #crss {
@@ -34,20 +37,23 @@
 
             .crs-list {
                 list-style: none;
+                margin: 0;
                 padding: 0;
             }
 
             .crs-header {
-                font-size: 18px;
+                font-size: 16px;
                 margin: 0;
             }
 
             .crs {
+                border-bottom: 1px solid #222;
+                cursor: default;
                 padding: 5px;
             }
 
             .crs:hover {
-                background: #aaa;
+                background: #eee;
             }
 
             .welcome-message {
