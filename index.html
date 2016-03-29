@@ -14,6 +14,10 @@
                 width: 100%;
             }
 
+            p {
+                margin-top: 0;
+            }
+
             .units {
                 margin-left: 5px;
                 width: 90%;
@@ -23,16 +27,25 @@
                 background: white;
                 height: 90%;
                 position: absolute;
-                overflow-y: auto;
+                overflow: hidden;
                 right: 15px;
                 top: 35px;
                 width: 300px;
             }
 
+            .side-panel-header {
+                margin: 0;
+                margin-left: 5px;
+            }
+
+            .side-panel-header-fixed {
+                background: white;
+                margin-bottom: 5px;
+            }
+
             .crs-list {
                 list-style: none;
                 margin: 0;
-                margin-top: 5px;
                 padding: 0;
             }
 
@@ -55,8 +68,11 @@
                 background: #eee;
             }
 
+            #crss {
+                overflow: auto;
+            }
+
             .welcome-message {
-                background: white;
                 padding: 5px;
             }
         </style>
@@ -73,7 +89,7 @@
             <ol class="crs-list">
                 {{#each crss}}
                     <li class="crs" data-code="{{properties.coord_ref_sys_code}}">
-                        <h1 class="crs-header">{{properties.coord_ref_sys_name}} (EPSG:{{properties.coord_ref_sys_code}})</h1>
+                        <h2 class="crs-header">{{properties.coord_ref_sys_name}} (EPSG:{{properties.coord_ref_sys_code}})</h2>
                         <div class="body">
                             <div class="crs-area">{{properties.area_name}}</div>
                             <div class="crs-units">{{properties.unit_of_meas_name}}</div>
@@ -171,21 +187,27 @@
                         }
                     });
                 });
+
+                $('#crss').outerHeight($('.side-panel').outerHeight() - $('.side-panel-header-fixed').outerHeight());
             }
         </script>
     </head>
     <body>
         <div id="map"></div>
         <div class="side-panel">
-            <div class="welcome-message">
-                draw a shape for projection suggestions for the area around that shape. use the tools to the left.
+            <div class="side-panel-header-fixed">
+                <h1 class="side-panel-header">projestions</h1>
+                <div class="welcome-message">
+                    <p>draw a shape for projection suggestions for the area around that shape. use the tools to the left.</p>
+                    <p>see the project's <a href="https://github.com/ebrelsford/projestions#projestions" target="_blank">readme</a> for credits and details.</p>
+                </div>
+                <select class="units">
+                    <option value="">pick units</option>
+                    <!-- TODO others? degrees -->
+                    <option value="US survey foot">feet</option>
+                    <option value="metre">meters</option>
+                </select>
             </div>
-            <select class="units">
-                <option value="">pick units</option>
-                <!-- TODO others? degrees -->
-                <option value="US survey foot">feet</option>
-                <option value="metre">meters</option>
-            </select>
             <div id="crss"></div>
         </div>
     </body>
