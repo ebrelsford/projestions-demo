@@ -115,7 +115,10 @@
             var template = Handlebars.compile(source);
             var drawnItems = new L.FeatureGroup();
             var projections = L.geoJson(null, {
-                style: { fill: false }
+                style: {
+                    fill: false,
+                    color: '#82A86A'
+                }
             });
             var map;
 
