@@ -15,13 +15,11 @@
             }
 
             .units {
-                position: absolute;
-                right: 15px;
-                top: 15px;
-                width: 300px;
+                margin-left: 5px;
+                width: 90%;
             }
 
-            #crss {
+            .side-panel {
                 background: white;
                 height: 90%;
                 position: absolute;
@@ -31,13 +29,10 @@
                 width: 300px;
             }
 
-            #crss:empty {
-                display: none;
-            }
-
             .crs-list {
                 list-style: none;
                 margin: 0;
+                margin-top: 5px;
                 padding: 0;
             }
 
@@ -52,18 +47,17 @@
                 padding: 5px;
             }
 
+            .crs:first-of-type {
+                border-top: 1px solid #222;
+            }
+
             .crs:hover {
                 background: #eee;
             }
 
             .welcome-message {
                 background: white;
-                position: absolute;
-                left: 50%;
-                transform: translate(-50%, 0);
                 padding: 5px;
-                top: 15px;
-                z-index: 1000;
             }
         </style>
 
@@ -92,6 +86,7 @@
             </ol>
         </script>
 
+        <!-- TODO permalinks? -->
         <script>
             if (document.readyState != 'loading'){
                 onReady();
@@ -176,24 +171,22 @@
                         }
                     });
                 });
-
-                $('body').on('click', function () {
-                    $('.welcome-message').hide();
-                });
             }
         </script>
     </head>
     <body>
         <div id="map"></div>
-        <select class="units">
-            <option value="">pick units</option>
-            <!-- TODO others? degrees -->
-            <option value="US survey foot">feet</option>
-            <option value="metre">meters</option>
-        </select>
-        <div class="welcome-message">
-            draw a shape for projection suggestions for the area around that shape. use the tools to the left.
+        <div class="side-panel">
+            <div class="welcome-message">
+                draw a shape for projection suggestions for the area around that shape. use the tools to the left.
+            </div>
+            <select class="units">
+                <option value="">pick units</option>
+                <!-- TODO others? degrees -->
+                <option value="US survey foot">feet</option>
+                <option value="metre">meters</option>
+            </select>
+            <div id="crss"></div>
         </div>
-        <div id="crss"></div>
     </body>
 </html>
