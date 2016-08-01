@@ -19,8 +19,10 @@
                 margin-top: 0;
             }
 
-            .units {
+            .units,
+            .sort {
                 margin-left: 5px;
+                margin-top: 5px;
                 width: 90%;
             }
 
@@ -132,6 +134,9 @@
                 if ($('.units').val()) {
                     params.units = $('.units').val();
                 }
+                if ($('.sort').val()) {
+                    params.sort = $('.sort').val();
+                }
                 $.getJSON(PROJESTIONS_CONFIG.host + '?' + $.param(params), function (data) {
                     map.fire('dataload');
                     projections.clearLayers();
@@ -182,6 +187,10 @@
                     loadCrss();
                 });
 
+                $('.sort').change(function () {
+                    loadCrss();
+                });
+
                 $('#crss').on('mouseover', '.crs', function () {
                     var code = parseInt($(this).data('code'));
                     projections.eachLayer(function (layer) {
@@ -211,6 +220,12 @@
                     <!-- TODO others? degrees -->
                     <option value="US survey foot">feet</option>
                     <option value="metre">meters</option>
+                </select>
+                <select class="sort">
+                    <option value="">pick sort method</option>
+                    <option value="areadiff">area diff</option>
+                    <option value="area">area</option>
+                    <option value="hausdorff">hausdorff</option>
                 </select>
             </div>
             <div id="crss"></div>
