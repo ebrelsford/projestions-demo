@@ -127,7 +127,7 @@
                 var params = {
                     geojson: true,
                     geom: JSON.stringify(drawnItems.toGeoJSON().features[0].geometry),
-                    sort: 'area'
+                    sort: 'areadiff'
                 };
                 if ($('.units').val()) {
                     params.units = $('.units').val();
