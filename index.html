@@ -126,7 +126,8 @@
                 map.fire('dataloading');
                 var params = {
                     geojson: true,
-                    geom: JSON.stringify(drawnItems.toGeoJSON().features[0].geometry)
+                    geom: JSON.stringify(drawnItems.toGeoJSON().features[0].geometry),
+                    sort: 'area'
                 };
                 if ($('.units').val()) {
                     params.units = $('.units').val();
