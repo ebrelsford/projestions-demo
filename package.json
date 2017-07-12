@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "description": "projection suggestions",
   "main": "index.js",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/ebrelsford/projestions-demo.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ebrelsford/projestions-demo.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "handlebars": "^4.0.5",
-    "leaflet-draw": "^0.2.3",
-    "leaflet-loading": "^0.1.17"
+    "leaflet-draw": "^0.4.10",
+    "leaflet-loading": "^0.1.24"
   }
 }
