@@ -116,7 +116,7 @@
 
             var source = $("#crss-template").html();
             var template = Handlebars.compile(source);
-            var drawnItems = new L.FeatureGroup();
+            var drawnItems = L.geoJson();
             var projections = L.geoJson(null, {
                 style: {
                     fill: false,
@@ -147,6 +147,36 @@
             }
 
             function onReady() {
+                document.body.addEventListener('dragover', function (e) {
+                    e.preventDefault();
+                    e.dataTransfer.dropEffect = 'move';
+                    return false;
+                }, false);
+
+                document.body.addEventListener('drop', function (e) {
+                    e.preventDefault();
+                    var fileReader = new FileReader();
+
+                    fileReader.onload = function (e) {
+                        try {
+                            var geojson = JSON.parse(e.target.result);
+                            drawnItems.clearLayers();
+                            drawnItems.addData(geojson);
+                            map.fitBounds(drawnItems.getBounds());
+                            loadCrss();
+                        }
+                        catch (e) {
+                            console.warn(e);
+                        }
+                    };
+
+                    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                        fileReader.readAsText(e.dataTransfer.files[0]);
+                    }  
+
+                    return false;
+                }, false);
+
                 map = L.map('map', {
                     loadingControl: true
                 });
@@ -212,7 +242,7 @@
             <div class="side-panel-header-fixed">
                 <h1 class="side-panel-header">projestions</h1>
                 <div class="welcome-message">
-                    <p>use the tools to the left to draw a shape for projection suggestions for the area around that shape.</p>
+                    <p>drag a geojson file onto the map or use the tools to the left to draw a shape for projection suggestions for the area around that shape.</p>
                     <p>see the project's <a href="https://github.com/ebrelsford/projestions#projestions" target="_blank">readme</a> for credits and details, submit an issue or pull request at the <a href="https://github.com/ebrelsford/projestions">github repo</a>.</p>
                 </div>
                 <select class="units">
@@ -225,6 +255,7 @@
                     <option value="">pick sort method</option>
                     <option value="areadiff">area diff</option>
                     <option value="area">area</option>
+                    <option value="intersectdiff">intersect diff</option>
                     <option value="hausdorff">hausdorff</option>
                 </select>
             </div>
@@ -245,7 +276,7 @@
                 g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
             })();
         </script>
-        <noscript><p><img src="//analytics.ebrelsford.com/piwik.php?idsite=5" style="border:0;" alt="" /></p></noscript>
+        <noscript><p><img src="//analytics.ebrelsford.com/piwik.php?idsite=5" style="borrder:0;" alt="" /></p></noscript>
         <!-- End Piwik Code -->
     </body>
 </html>
