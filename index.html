@@ -129,7 +129,6 @@
                 map.fire('dataloading');
                 var params = {
                     geojson: true,
-                    geom: JSON.stringify(drawnItems.toGeoJSON()),
                     sort: 'areadiff'
                 };
                 if ($('.units').val()) {
@@ -138,12 +137,13 @@
                 if ($('.sort').val()) {
                     params.sort = $('.sort').val();
                 }
-                $.getJSON(PROJESTIONS_CONFIG.host + '?' + $.param(params), function (data) {
+
+                $.post(PROJESTIONS_CONFIG.host + '?' + $.param(params), { geom: JSON.stringify(drawnItems.toGeoJSON()) }, function (data) {
                     map.fire('dataload');
                     projections.clearLayers();
                     projections.addData(data);
                     $('#crss').html(template({ crss: data.features }));
-                });
+                }, 'json');
             }
 
             function onReady() {
