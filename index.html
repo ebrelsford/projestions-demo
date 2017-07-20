@@ -126,6 +126,11 @@
             var map;
 
             function loadCrss() {
+                projections.clearLayers();
+                $('#crss').html(template({ crss: [] }));
+
+                if (drawnItems.getLayers().length === 0) return;
+
                 map.fire('dataloading');
                 var params = {
                     geojson: true,
@@ -140,7 +145,6 @@
 
                 $.post(PROJESTIONS_CONFIG.host + '?' + $.param(params), { geom: JSON.stringify(drawnItems.toGeoJSON()) }, function (data) {
                     map.fire('dataload');
-                    projections.clearLayers();
                     projections.addData(data);
                     $('#crss').html(template({ crss: data.features }));
                 }, 'json');
@@ -210,6 +214,9 @@
                     drawnItems.addLayer(e.layer);
                     loadCrss();
                 });
+
+                map.on(L.Draw.Event.EDITED, loadCrss);
+                map.on(L.Draw.Event.DELETED, loadCrss);
 
                 $('.units').change(function () {
                     loadCrss();
