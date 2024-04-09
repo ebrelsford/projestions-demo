@@ -208,8 +208,8 @@
                 map = L.map('map', {
                     loadingControl: true
                 });
-                var osmUrl='https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg';
-                var osmAttrib='Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.';
+                var osmUrl='https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.png';
+                var osmAttrib='&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>';
                 L.tileLayer(osmUrl, {maxZoom: 12, attribution: osmAttrib}).addTo(map);		
                 map.setView([51.505, -0.09], 13)
                 map.locate({ setView: true });
@@ -291,22 +291,5 @@
             </div>
             <div id="crss"></div>
         </div>
-
-        <!-- Piwik -->
-        <script type="text/javascript">
-            var _paq = _paq || [];
-            _paq.push(["setDomains", ["*.projest.io"]]);
-            _paq.push(['trackPageView']);
-            _paq.push(['enableLinkTracking']);
-            (function() {
-                var u="//analytics.ebrelsford.com/";
-                _paq.push(['setTrackerUrl', u+'piwik.php']);
-                _paq.push(['setSiteId', '5']);
-                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-            })();
-        </script>
-        <noscript><p><img src="//analytics.ebrelsford.com/piwik.php?idsite=5" style="borrder:0;" alt="" /></p></noscript>
-        <!-- End Piwik Code -->
     </body>
 </html>
